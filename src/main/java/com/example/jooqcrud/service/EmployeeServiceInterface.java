@@ -1,5 +1,6 @@
 package com.example.jooqcrud.service;
 
+import com.example.jooqcrud.Model.EmployeeModel;
 import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Employee;
 
 import java.util.List;
@@ -7,9 +8,9 @@ import java.util.List;
 public interface EmployeeServiceInterface {
     public void insertEmployee(Employee employee);
 
-    public List<Employee> getAllEmployees();
+    public List<EmployeeModel> getAllEmployees();
 
-    public Employee getEmployeeByID(int ID);
+    public EmployeeModel getEmployeeByID(int ID);
 
     public String deleteEmployee(int ID);
 

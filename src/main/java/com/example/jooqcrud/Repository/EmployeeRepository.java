@@ -1,5 +1,6 @@
 package com.example.jooqcrud.Repository;
 
+import com.example.jooqcrud.Model.EmployeeModel;
 import com.tej.JooQDemo.jooq.sample.model.Tables;
 import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Employee;
 import org.jooq.DSLContext;
@@ -14,7 +15,7 @@ public class EmployeeRepository {
     private DSLContext dslContext;
 
 
-    public void insert(Employee employee) {
+    public void insert(EmployeeModel employee) {
         dslContext.insertInto(Tables.EMPLOYEE, Tables.EMPLOYEE.ID, Tables.EMPLOYEE.NAME)
                 .values(employee.getId(), employee.getName())
                 .execute();
@@ -35,7 +36,7 @@ public class EmployeeRepository {
         return dslContext.deleteFrom(Tables.EMPLOYEE).where(Tables.EMPLOYEE.ID.equal(toFindID)).execute() >= 1;
     }
 
-    public String updateEmployee(int ID, Employee employee) {
+    public String updateEmployee(int ID, EmployeeModel employee) {
         Employee newEmployee = getByID(ID);
         if (newEmployee == null) {
             return "fail";

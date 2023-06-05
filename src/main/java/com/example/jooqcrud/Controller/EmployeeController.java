@@ -1,5 +1,6 @@
 package com.example.jooqcrud.Controller;
 
+import com.example.jooqcrud.Model.EmployeeModel;
 import com.example.jooqcrud.service.EmployeeService;
 import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ import java.util.List;
         }
 
         @GetMapping
-        public List<Employee> getEmployees(){
+        public List<EmployeeModel> getEmployees(){
             return service.getAllEmployees();
         }
 
         @RequestMapping("/getID")
-        public Employee getEmployeeByID(@RequestParam int ID){
+        public EmployeeModel getEmployeeByID(@RequestParam int ID){
             return service.getEmployeeByID(ID);
         }
 
