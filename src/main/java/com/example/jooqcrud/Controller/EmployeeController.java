@@ -26,15 +26,19 @@ import java.util.List;
         }
 
         @RequestMapping("/getID")
-        public List<Employee> getEmployeeByID(@RequestParam int ID){
+        public Employee getEmployeeByID(@RequestParam int ID){
             return service.getEmployeeByID(ID);
         }
 
         @DeleteMapping
         public String deleteEmployee(@RequestParam int ID){
-             service.deleteEmployee(ID);
-             return "Employee deleted.";
+             return service.deleteEmployee(ID);
+
         }
 
+        @PutMapping("/update")
+        public String updateEmployee(@RequestParam int ID, @RequestBody Employee employee){
+            return service.updateEmployee(ID, employee);
+        }
 
 }

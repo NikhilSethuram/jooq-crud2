@@ -9,10 +9,10 @@ public interface EmployeeServiceInterface {
 
     public List<Employee> getAllEmployees();
 
-    public List<Employee> getEmployeeByID(int ID);
+    public Employee getEmployeeByID(int ID);
 
     public String deleteEmployee(int ID);
 
-    public void updateEmployee(Employee employee);
+    public String  updateEmployee(int ID,Employee employee);
 
 }

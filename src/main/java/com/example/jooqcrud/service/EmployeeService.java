@@ -24,7 +24,7 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public List<Employee> getEmployeeByID(int ID) {
+    public Employee getEmployeeByID(int ID) {
         return employeeRepository.getByID(ID);
     }
 
@@ -35,6 +35,8 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public String updateEmployee(int ID,Employee employee) {
+        employeeRepository.updateEmployee(ID,employee);
+        return "Employee updated";
     }
 }
