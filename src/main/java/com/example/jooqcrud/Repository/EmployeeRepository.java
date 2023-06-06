@@ -13,12 +13,13 @@ import java.util.List;
 public class EmployeeRepository {
     @Autowired
     private DSLContext dslContext;
-
+    private AddressRepository addressRepository;
 
     public void insert(EmployeeModel employee) {
         dslContext.insertInto(Tables.EMPLOYEE, Tables.EMPLOYEE.ID, Tables.EMPLOYEE.NAME)
                 .values(employee.getId(), employee.getName())
                 .execute();
+        addressRepository.insertAddress(employee.getAddressModel());
     }
 
     public List<Employee> getEmployees() {

@@ -12,6 +12,14 @@ import lombok.Setter;
 public class EmployeeModel {
     private Integer id;
     private String name;
+    private AddressModel addressModel;
 
-
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AddressModel{
+        private Integer id;
+        private String address;
+    }
 }

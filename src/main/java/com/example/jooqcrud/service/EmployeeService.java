@@ -1,7 +1,9 @@
 package com.example.jooqcrud.service;
 
 import com.example.jooqcrud.Model.EmployeeModel;
+import com.example.jooqcrud.Repository.AddressRepository;
 import com.example.jooqcrud.Repository.EmployeeRepository;
+import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Address;
 import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Employee;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,16 @@ import java.util.List;
 public class EmployeeService implements EmployeeServiceInterface {
     @Autowired
     private EmployeeRepository employeeRepository;
-
+    private AddressRepository addressRepository;
 
     @Override
     public void insertEmployee(Employee employee) {
         EmployeeModel model = new EmployeeModel();
-        BeanUtils.copyProperties(model, employee);
+        EmployeeModel.AddressModel addmodel= new EmployeeModel.AddressModel();
+        Address address = addressRepository.getAddressByID(employee.getId());
+        BeanUtils.copyProperties(employee,model);
+        BeanUtils.copyProperties(address,addmodel);
+        //the insert of employee method calls addrrep to insert address
         employeeRepository.insert(model);
     }
 
@@ -39,7 +45,13 @@ public class EmployeeService implements EmployeeServiceInterface {
     public EmployeeModel getEmployeeByID(int ID) {
         Employee employee = employeeRepository.getByID(ID);
         EmployeeModel model = new EmployeeModel();
-        BeanUtils.copyProperties(model, employee);
+        BeanUtils.copyProperties(employee,model);
+
+        Address address = addressRepository.getAddressByID(employee.getId());
+        EmployeeModel.AddressModel addressModel = new EmployeeModel.AddressModel();
+        BeanUtils.copyProperties(address, addressModel);
+
+        model.setAddressModel(addressModel);
         return model;
     }
 
