@@ -1,6 +1,6 @@
 package com.example.jooqcrud.Repository;
 
-import com.example.jooqcrud.Model.EmployeeModel;
+import com.example.jooqcrud.Model.AddressModel;
 import com.tej.JooQDemo.jooq.sample.model.Tables;
 import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Address;
 import org.jooq.DSLContext;
@@ -17,10 +17,12 @@ public class AddressRepository implements AddressRepositoryInterface {
 
 
 
-        public void insertAddress(EmployeeModel.AddressModel addressModel) {
-                dslContext.insertInto(Tables.ADDRESS, Tables.ADDRESS.ID, Tables.ADDRESS.ADDRESS_)
-                        .values(addressModel.getId(), addressModel.getAddress())
-                        .execute();
+        public void insertAddress(AddressModel addressModel) {
+                dslContext.insertInto(Tables.ADDRESS, Tables.ADDRESS.ID, Tables.ADDRESS.LINE1,
+                                Tables.ADDRESS.LINE2,Tables.ADDRESS.CITY,Tables.ADDRESS.STATE,
+                                Tables.ADDRESS.PINCODE,Tables.ADDRESS.COUNTRY).values(addressModel.getId(), addressModel.getLine1(), addressModel.getLine2(),
+                                addressModel.getCity(), addressModel.getState(), addressModel.getPincode(),
+                                addressModel.getCountry()).execute();
         }
 
         @Override

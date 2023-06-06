@@ -29,7 +29,6 @@ public class EmployeeRepository {
     public Employee getByID(int ID) {
         List<Employee> list1= dslContext.select().from(Tables.EMPLOYEE).where(Tables.EMPLOYEE.ID.equal(ID))
                 .fetchInto(Employee.class);
-        System.out.println(list1);
         return list1.get(0);
     }
 

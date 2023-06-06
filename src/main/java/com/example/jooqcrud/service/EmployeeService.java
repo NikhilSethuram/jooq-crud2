@@ -1,5 +1,6 @@
 package com.example.jooqcrud.service;
 
+import com.example.jooqcrud.Model.AddressModel;
 import com.example.jooqcrud.Model.EmployeeModel;
 import com.example.jooqcrud.Repository.AddressRepository;
 import com.example.jooqcrud.Repository.EmployeeRepository;
@@ -21,7 +22,7 @@ public class EmployeeService implements EmployeeServiceInterface {
     @Override
     public void insertEmployee(Employee employee) {
         EmployeeModel model = new EmployeeModel();
-        EmployeeModel.AddressModel addmodel= new EmployeeModel.AddressModel();
+        AddressModel addmodel= new AddressModel();
         Address address = addressRepository.getAddressByID(employee.getId());
         BeanUtils.copyProperties(employee,model);
         BeanUtils.copyProperties(address,addmodel);
@@ -48,7 +49,7 @@ public class EmployeeService implements EmployeeServiceInterface {
         BeanUtils.copyProperties(employee,model);
 
         Address address = addressRepository.getAddressByID(employee.getId());
-        EmployeeModel.AddressModel addressModel = new EmployeeModel.AddressModel();
+        AddressModel addressModel = new AddressModel();
         BeanUtils.copyProperties(address, addressModel);
 
         model.setAddressModel(addressModel);
