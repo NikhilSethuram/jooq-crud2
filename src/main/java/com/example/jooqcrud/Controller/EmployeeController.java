@@ -2,7 +2,6 @@ package com.example.jooqcrud.Controller;
 
 import com.example.jooqcrud.Model.EmployeeModel;
 import com.example.jooqcrud.service.EmployeeService;
-import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +15,7 @@ import java.util.List;
         private EmployeeService service;
 
         @PostMapping
-        public String addEmployee(@RequestBody Employee employee){
+        public String addEmployee(@RequestBody EmployeeModel employee){
             service.insertEmployee(employee);
             return "Employee added.";
         }
@@ -38,7 +37,7 @@ import java.util.List;
         }
 
         @PutMapping("/update")
-        public String updateEmployee(@RequestParam int ID, @RequestBody Employee employee){
+        public String updateEmployee(@RequestParam int ID, @RequestBody EmployeeModel employee){
             return service.updateEmployee(ID, employee);
         }
 

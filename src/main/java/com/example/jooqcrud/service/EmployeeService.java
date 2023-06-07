@@ -20,7 +20,7 @@ public class EmployeeService implements EmployeeServiceInterface {
     private AddressRepository addressRepository;
 
     @Override
-    public void insertEmployee(Employee employee) {
+    public void insertEmployee(EmployeeModel employee) {
         EmployeeModel model = new EmployeeModel();
         AddressModel addmodel= new AddressModel();
         Address address = addressRepository.getAddressByID(employee.getId());
@@ -63,7 +63,7 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public String updateEmployee(int ID,Employee employee) {
+    public String updateEmployee(int ID,EmployeeModel employee) {
         EmployeeModel updatedEmployee = new EmployeeModel();
         BeanUtils.copyProperties(employee, updatedEmployee);
         employeeRepository.updateEmployee(ID, updatedEmployee);
